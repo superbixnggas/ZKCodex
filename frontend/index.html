@@ -87,6 +87,16 @@
         .animate-spin {
             animation: spin 1s linear infinite;
         }
+
+        /* Hide MiniMax watermark */
+        #minimax-floating-ball,
+        div[id*="minimax"],
+        div[contains(text(), "Created by MiniMax Agent")],
+        .minimax-floating-ball {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -247,6 +257,43 @@
     </div>
 
     <script>
+        // Function to remove MiniMax watermark
+        function removeMiniMaxWatermark() {
+            const watermarkSelectors = [
+                '#minimax-floating-ball',
+                'div[id*="minimax"]',
+                'div[class*="minimax"]',
+                '*[contains(text(), "Created by MiniMax Agent")]',
+                '*[contains(text(), "MiniMax Agent")]'
+            ];
+
+            watermarkSelectors.forEach(selector => {
+                try {
+                    // Try standard querySelector
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(el => {
+                        if (el.textContent && el.textContent.includes('Created by MiniMax Agent')) {
+                            el.remove();
+                        }
+                    });
+                } catch (e) {
+                    // Selector not supported, use alternative method
+                }
+            });
+
+            // Remove any element with "Created by MiniMax Agent" text
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (el.textContent && el.textContent.includes('Created by MiniMax Agent')) {
+                    el.remove();
+                }
+            });
+        }
+
+        // Remove watermark on page load and periodically
+        document.addEventListener('DOMContentLoaded', removeMiniMaxWatermark);
+        setInterval(removeMiniMaxWatermark, 1000);
+
         // Initialize Supabase
         const { createClient } = supabase;
         const supabaseClient = createClient(
