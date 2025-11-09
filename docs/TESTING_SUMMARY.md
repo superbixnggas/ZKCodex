@@ -3,7 +3,7 @@
 ## Deployment Status: PRODUCTION READY
 
 ### URLs
-- **Frontend**: https://0f87nsxg065v.space.minimax.io
+- **Frontend**: https://f30gia3n7psl.space.minimax.io
 - **Edge Function**: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message
 
 ---
@@ -153,7 +153,7 @@ ALERT: Volume spike 109% | Price momentum: BUILDING | Action: HOLD $157.49 | RSI
 ## How to Test
 
 ### Manual Testing via Browser
-1. Visit: https://0f87nsxg065v.space.minimax.io
+1. Visit: https://f30gia3n7psl.space.minimax.io
 2. Select AI mode (Oracle / Analyzer / Signal)
 3. Enter crypto question tentang Solana
 4. Verify response contains real-time data

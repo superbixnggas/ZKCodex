@@ -4,7 +4,7 @@
 ZKCodex telah ditransformasi menjadi **Crypto Trading Analysis Tool** dengan integrasi real-time data dari CoinGecko dan DexScreener APIs.
 
 ## Deployment
-- **Frontend**: https://0f87nsxg065v.space.minimax.io
+- **Frontend**: https://f30gia3n7psl.space.minimax.io
 - **Edge Function**: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message
 - **Status**: Production Ready
 
@@ -256,7 +256,7 @@ curl -X POST 'https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message' \
 
 ### For End Users
 
-1. **Access Website**: https://0f87nsxg065v.space.minimax.io
+1. **Access Website**: https://f30gia3n7psl.space.minimax.io
 2. **Select AI Mode**:
    - Oracle: Market predictions
    - Analyzer: Technical analysis
@@ -343,7 +343,7 @@ curl -X POST 'https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message' \
 ### Frontend
 - **Version**: Static HTML
 - **File**: `/workspace/zkcodex-static/index.html`
-- **Deployment**: https://0f87nsxg065v.space.minimax.io
+- **Deployment**: https://f30gia3n7psl.space.minimax.io
 
 ### Database
 - **Table**: `codex_entries`

@@ -27,7 +27,7 @@
     "help": "echo 'Available commands:' && echo '  npm run dev          - Start development server' && echo '  npm run test         - Test all backend services' && echo '  npm run deploy       - Deploy to production' && echo '  npm run setup        - Initial setup'",
     "check:env": "node -e \"console.log('SUPABASE_URL:', process.env.SUPABASE_URL ? '✅ Set' : '❌ Missing'); console.log('SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? '✅ Set' : '❌ Missing'); console.log('SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ Set' : '❌ Missing')\"",
     "health:check": "curl -s \"https://lrisuodzyseyqhukqvjw.supabase.co/rest/v1/codex_entries?select=count\" -H \"Authorization: Bearer $SUPABASE_ANON_KEY\" | jq -r '.[0].count // \"Error\"'",
-    "status": "echo 'ZKCodex Status:' && echo 'Frontend: https://0f87nsxg065v.space.minimax.io' && echo 'Supabase: https://lrisuodzyseyqhukqvjw.supabase.co' && echo 'Message API: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message' && echo 'Verify API: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/verify'",
+    "status": "echo 'ZKCodex Status:' && echo 'Frontend: https://f30gia3n7psl.space.minimax.io' && echo 'Supabase: https://lrisuodzyseyqhukqvjw.supabase.co' && echo 'Message API: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message' && echo 'Verify API: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/verify'",
     "logs": "supabase functions logs --follow",
     "logs:message": "supabase functions logs message --follow",
     "logs:verify": "supabase functions logs verify --follow"
@@ -61,6 +61,6 @@
   "bugs": {
     "url": "https://github.com/your-username/zkcodex/issues"
   },
-  "homepage": "https://0f87nsxg065v.space.minimax.io",
+  "homepage": "https://f30gia3n7psl.space.minimax.io",
   "private": true
 }

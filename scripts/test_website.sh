@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # ZKCodex Website Testing Script
-# Tests the deployed website at https://0f87nsxg065v.space.minimax.io
+# Tests the deployed website at https://f30gia3n7psl.space.minimax.io
 
-WEBSITE_URL="https://0f87nsxg065v.space.minimax.io"
+WEBSITE_URL="https://f30gia3n7psl.space.minimax.io"
 SUPABASE_URL="https://lrisuodzyseyqhukqvjw.supabase.co"
 ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyaXN1b2R6eXNleXFodWtxdmp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1NjY2NjcsImV4cCI6MjA3ODE0MjY2N30.DRA4jM6TnkHv04g2WqXdnoM0XhwKD7OI6tl6hZlPviA"
 

@@ -315,8 +315,8 @@ Response mode: signal
 **Version**: Latest (with all bug fixes)
 
 ### Previous Deployments (for reference)
-- https://7glz1b6kno62.space.minimax.io (testing version)
-- https://0f87nsxg065v.space.minimax.io (original deployment)
+- https://f30gia3n7psl.space.minimax.io (testing version)
+- https://f30gia3n7psl.space.minimax.io (original deployment)
 
 ### Edge Function
 **URL**: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message  

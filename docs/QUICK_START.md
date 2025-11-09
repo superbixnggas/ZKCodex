@@ -74,7 +74,7 @@ npm run logs          # View function logs
 
 ## 🌐 URLs yang Udah Ada
 
-- **Website**: https://0f87nsxg065v.space.minimax.io
+- **Website**: https://f30gia3n7psl.space.minimax.io
 - **Supabase**: https://lrisuodzyseyqhukqvjw.supabase.co
 - **Message API**: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message
 - **Verify API**: https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/verify
