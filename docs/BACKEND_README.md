@@ -295,6 +295,6 @@ Jika ada masalah dengan backend:
 
 ---
 
-**Author**: MiniMax Agent  
+**Author**: ZKCodex Team  
 **Last Updated**: 2025-11-09  
 **Version**: 1.0.0

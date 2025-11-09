@@ -41,7 +41,7 @@
     "ai",
     "chat"
   ],
-  "author": "MiniMax Agent",
+  "author": "ZKCodex Team",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2",

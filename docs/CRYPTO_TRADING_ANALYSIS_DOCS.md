@@ -354,7 +354,7 @@ curl -X POST 'https://lrisuodzyseyqhukqvjw.supabase.co/functions/v1/message' \
 
 ## Contact & Support
 
-**Developer**: MiniMax Agent
+**Developer**: ZKCodex Team
 **Date**: 2025-11-09
 **Status**: Production Ready
 
