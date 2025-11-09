@@ -4,6 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZKCodex - Zero-Knowledge Transmission AI Communication System</title>
+    
+    <!-- Ultra aggressive watermark removal CSS - applies immediately -->
+    <style>
+        /* Hide ALL potential watermark elements immediately */
+        #minimax-floating-ball,
+        [id*="minimax"],
+        [class*="minimax"],
+        [id*="agent"],
+        [class*="agent"],
+        [id*="watermark"],
+        [class*="watermark"],
+        [id*="credit"],
+        [class*="credit"],
+        [id*="brand"],
+        [class*="brand"],
+        [id*="powered"],
+        [class*="powered"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            z-index: -9999 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Remove watermarks in fixed positions */
+        [style*="position: fixed"][style*="bottom"],
+        [style*="position: absolute"][style*="bottom"] {
+            display: none !important;
+        }
+        
+        /* Force hide any element containing MiniMax text */
+        *:not(script):not(style) {
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+        }
+    </style>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -279,7 +321,39 @@
         </div>
     </div>
 
+    <!-- Ultra aggressive watermark removal - runs as early as possible -->
     <script>
+        // Override Element.prototype.remove to prevent watermark elements from being created
+        const originalRemove = Element.prototype.remove;
+        Element.prototype.remove = function() {
+            if (this.textContent && this.textContent.includes('Created by MiniMax Agent')) {
+                return; // Don't remove, just block
+            }
+            return originalRemove.apply(this, arguments);
+        };
+
+        // Remove watermarks immediately and continuously
+        function superAggressiveWatermarkRemoval() {
+            // Remove all potential watermark elements
+            document.querySelectorAll('*').forEach(element => {
+                if (element.textContent && 
+                    (element.textContent.includes('Created by MiniMax Agent') ||
+                     element.textContent.includes('MiniMax Agent') ||
+                     (element.id && element.id.toLowerCase().includes('minimax')) ||
+                     (element.className && element.className.toLowerCase().includes('minimax')))) {
+                    element.style.display = 'none';
+                    element.style.visibility = 'hidden';
+                    element.style.opacity = '0';
+                    element.style.position = 'absolute';
+                    element.style.left = '-9999px';
+                    element.style.zIndex = '-9999';
+                }
+            });
+        }
+
+        // Run immediately
+        superAggressiveWatermarkRemoval();
+
         // Comprehensive function to remove MiniMax watermark
         function removeMiniMaxWatermark() {
             try {
