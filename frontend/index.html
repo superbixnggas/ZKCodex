@@ -91,11 +91,34 @@
         /* Hide MiniMax watermark */
         #minimax-floating-ball,
         div[id*="minimax"],
-        div[contains(text(), "Created by MiniMax Agent")],
-        .minimax-floating-ball {
+        [class*="minimax"],
+        [id*="agent"],
+        [class*="agent"],
+        [id*="watermark"],
+        [class*="watermark"] {
             display: none !important;
             visibility: hidden !important;
             opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            z-index: -9999 !important;
+            pointer-events: none !important;
+        }
+
+        /* Remove watermarks that might be injected */
+        * {
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+        }
+
+        /* Override any potential inline styles for watermarks */
+        [style*="z-index: 999"],
+        [style*="z-index: 9999"],
+        [style*="z-index: 99999"] {
+            display: none !important;
         }
     </style>
 </head>
@@ -257,42 +280,77 @@
     </div>
 
     <script>
-        // Function to remove MiniMax watermark
+        // Comprehensive function to remove MiniMax watermark
         function removeMiniMaxWatermark() {
-            const watermarkSelectors = [
-                '#minimax-floating-ball',
-                'div[id*="minimax"]',
-                'div[class*="minimax"]',
-                '*[contains(text(), "Created by MiniMax Agent")]',
-                '*[contains(text(), "MiniMax Agent")]'
-            ];
+            try {
+                // Direct element removal by ID and class
+                const watermarkElements = document.querySelectorAll(
+                    '#minimax-floating-ball, [id*="minimax"], [class*="minimax"], [id*="agent"], [class*="agent"]'
+                );
+                watermarkElements.forEach(el => el.remove());
 
-            watermarkSelectors.forEach(selector => {
-                try {
-                    // Try standard querySelector
-                    const elements = document.querySelectorAll(selector);
-                    elements.forEach(el => {
-                        if (el.textContent && el.textContent.includes('Created by MiniMax Agent')) {
+                // Remove elements containing specific text
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if (el.textContent) {
+                        const text = el.textContent.trim();
+                        if (text.includes('Created by MiniMax Agent') || 
+                            text.includes('MiniMax Agent') || 
+                            text.includes('Created by MiniMax') ||
+                            text.includes('Created by MiniMax Agent') ||
+                            text.includes('MiniMax') && el.offsetParent !== null) {
                             el.remove();
                         }
-                    });
-                } catch (e) {
-                    // Selector not supported, use alternative method
-                }
-            });
+                    }
+                });
 
-            // Remove any element with "Created by MiniMax Agent" text
-            const allElements = document.querySelectorAll('*');
-            allElements.forEach(el => {
-                if (el.textContent && el.textContent.includes('Created by MiniMax Agent')) {
-                    el.remove();
-                }
-            });
+                // Remove fixed position elements in bottom right
+                const fixedElements = document.querySelectorAll('*');
+                fixedElements.forEach(el => {
+                    const style = window.getComputedStyle(el);
+                    if (style.position === 'fixed' && 
+                        (style.bottom === '20px' || style.bottom === '10px' || style.bottom === '15px') &&
+                        (style.right === '20px' || style.right === '10px' || style.right === '15px') &&
+                        el.textContent && el.textContent.includes('MiniMax')) {
+                        el.remove();
+                    }
+                });
+
+                // Remove any floating elements
+                const floatingElements = document.querySelectorAll('[style*="z-index: 999"], [style*="z-index: 9999"], [style*="z-index: 99999"]');
+                floatingElements.forEach(el => {
+                    if (el.textContent && el.textContent.includes('MiniMax')) {
+                        el.remove();
+                    }
+                });
+            } catch (error) {
+                console.warn('Error removing watermark:', error);
+            }
         }
 
-        // Remove watermark on page load and periodically
-        document.addEventListener('DOMContentLoaded', removeMiniMaxWatermark);
-        setInterval(removeMiniMaxWatermark, 1000);
+        // Observer to watch for dynamically added watermarks
+        const watermarkObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.textContent && node.textContent.includes('Created by MiniMax Agent')) {
+                            node.remove();
+                        }
+                    }
+                });
+            });
+        });
+
+        // Start watermark removal
+        document.addEventListener('DOMContentLoaded', function() {
+            removeMiniMaxWatermark();
+            watermarkObserver.observe(document.body, { childList: true, subtree: true });
+        });
+
+        // Aggressive removal - run frequently
+        setInterval(removeMiniMaxWatermark, 500);
+        window.addEventListener('load', removeMiniMaxWatermark);
+        window.addEventListener('focus', removeMiniMaxWatermark);
 
         // Initialize Supabase
         const { createClient } = supabase;
